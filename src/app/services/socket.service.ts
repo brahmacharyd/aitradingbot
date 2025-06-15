@@ -21,7 +21,7 @@ export class SocketService {
   private buffer: Signal[] = [];
 
   constructor() {
-    this.socket = io('http://localhost:3000', {
+    this.socket = io('https://aitradingbot-backend.onrender.com/', {
       transports: ['websocket'],
       upgrade: false
     });
