@@ -45,3 +45,4 @@ Desktop.ini
 
 # Socket.IO cache or logs (if any custom setup)
 socket.log
+.vercel
