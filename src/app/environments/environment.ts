@@ -1,4 +1,4 @@
 export const environment = {
-    production: false,
-    socketUrl: 'http://0.0.0.0:3000/'
-  };
+  production: false,
+  socketUrl: 'ws://localhost:10000'
+};

@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "concurrently \"ng serve\" \"npm run backend\"",
-    "backend": "cd ../aitradingbot-backend && source venv/bin/activate && python3 ai-model/socket_server.py",
+    "backend": "cd ../aitradingbot-backend/ai-model && python3 -m uvicorn socket_server:app_sio --host 0.0.0.0 --port 10000",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
