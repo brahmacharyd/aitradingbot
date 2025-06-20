@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SocketService } from '../services/socket.service';
 import { Subscription } from 'rxjs';
 import { ClassifiedSignal } from './classified-signal.model';
+import { Order } from '../order.model';
+import { LocalStorageService } from '../local-storage.service';
 
 @Component({
   selector: 'app-signal-table',
@@ -16,7 +18,7 @@ export class SignalTableComponent implements OnInit, OnDestroy {
   loading = true;
   private sub!: Subscription;
 
-  constructor(private socketService: SocketService) {}
+  constructor(private socketService: SocketService,private storageService: LocalStorageService) {}
 
   ngOnInit(): void {
     this.sub = this.socketService.listenToClassifiedSignals().subscribe((classifiedSignals) => {
@@ -52,5 +54,18 @@ export class SignalTableComponent implements OnInit, OnDestroy {
 
   selectTab(tab: string): void {
     this.activeTab = tab;
+  }
+  onSignalConfirmed(signal: any): void {
+    const order: Order = {
+      symbol: signal.symbol,
+      type: signal.type,
+      price: signal.price,
+      tp: signal.tp,
+      sl: signal.sl,
+      timestamp: new Date().toISOString(),
+    };
+
+    this.storageService.saveOrder(order);
+    console.log('✅ Order saved to Local Storage', order);
   }
 }

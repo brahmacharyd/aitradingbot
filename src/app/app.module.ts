@@ -5,13 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SignalTableComponent } from './signal-table/signal-table.component';
 import { TradingviewChartComponent } from './tradingview-chart/tradingview-chart.component';
+import { SignalHistoryComponent } from './signal-history/signal-history.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    // AiSignalChartComponent,
     SignalTableComponent,
-    TradingviewChartComponent
+    TradingviewChartComponent,
+    SignalHistoryComponent
   ],
   imports: [
     BrowserModule,

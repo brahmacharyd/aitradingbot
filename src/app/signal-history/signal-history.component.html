@@ -1,0 +1,58 @@
+<div class="p-6 max-w-5xl mx-auto">
+    <h2 class="text-2xl font-bold text-gray-800 mb-4">🕓 Order History</h2>
+    
+    <!-- Clear Orders Button -->
+    <div class="flex justify-end mb-4">
+      <button
+        (click)="clearOrders()"
+        class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition"
+      >
+        🗑️ Clear All Orders
+      </button>
+    </div>
+  
+    <!-- No Orders -->
+    <div *ngIf="orders.length === 0" class="text-center text-gray-500 text-sm py-8">
+      No orders stored yet.
+    </div>
+  
+    <!-- Orders Table -->
+    <div *ngIf="orders.length > 0" class="overflow-x-auto">
+      <table class="min-w-full table-auto border border-gray-200 shadow rounded-lg">
+        <thead class="bg-gray-100 text-gray-700 text-sm uppercase">
+          <tr>
+            <th class="px-4 py-3 text-left">Symbol</th>
+            <th class="px-4 py-3 text-center">Type</th>
+            <th class="px-4 py-3 text-right">Price</th>
+            <th class="px-4 py-3 text-right">TP</th>
+            <th class="px-4 py-3 text-right">SL</th>
+            <th class="px-4 py-3 text-right">Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let order of orders"
+            class="border-t hover:bg-gray-50 text-sm transition duration-150"
+          >
+            <td class="px-4 py-2 font-medium text-indigo-600">{{ order.symbol }}</td>
+            <td
+              class="px-4 py-2 font-bold text-center"
+              [ngClass]="{
+                'text-green-600': order.type === 'BUY',
+                'text-red-600': order.type === 'SELL'
+              }"
+            >
+              {{ order.type }}
+            </td>
+            <td class="px-4 py-2 text-right">{{ order.price }}</td>
+            <td class="px-4 py-2 text-right">{{ order.tp }}</td>
+            <td class="px-4 py-2 text-right">{{ order.sl }}</td>
+            <td class="px-4 py-2 text-right text-gray-500">
+              {{ order.timestamp | date: 'short' }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
